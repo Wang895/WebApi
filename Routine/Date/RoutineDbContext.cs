@@ -45,6 +45,47 @@ namespace Routine.Date
                     Introduction = "Do not be evil",
                 }
             );
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    Id = Guid.NewGuid(),
+                    CompanyId = Guid.Parse("2f9e2e78-96b1-4203-b4e9-87764f8ee601"),
+                    LastName = "李",
+                    FirstName = "光",
+                    DateOfBirth = new DateTime(1994, 10, 14),
+                    EmployeeNo = "1",
+                    Gender = Gender.男,
+                },
+                 new Employee
+                 {
+                     Id = Guid.NewGuid(),
+                     CompanyId = Guid.Parse("2f9e2e78-96b1-4203-b4e9-87764f8ee601"),
+                     LastName = "张",
+                     FirstName = "三",
+                     DateOfBirth = new DateTime(1987, 10, 14),
+                     EmployeeNo = "2",
+                     Gender = Gender.男
+                 },
+                new Employee
+                {
+                    Id = Guid.NewGuid(),
+                    CompanyId = Guid.Parse("5067c167-122d-464c-ac95-40322fae31d2"),
+                    LastName = "李",
+                    FirstName = "四",
+                    DateOfBirth = new DateTime(1990, 10, 14),
+                    EmployeeNo = "3",
+                    Gender = Gender.女,
+                },
+                new Employee
+                {
+                    Id = Guid.NewGuid(),
+                    CompanyId = Guid.Parse("5067c167-122d-464c-ac95-40322fae31d2"),
+                    LastName = "赵",
+                    FirstName = "六",
+                    DateOfBirth = new DateTime(1990, 10, 14),
+                    EmployeeNo = "4",
+                    Gender = Gender.女,
+                });
         }
     }
 }

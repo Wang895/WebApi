@@ -61,3 +61,14 @@ C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\obj\Debug\netcoreapp3.1
 C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\obj\Debug\netcoreapp3.1\Routine.dll
 C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\obj\Debug\netcoreapp3.1\Routine.pdb
 C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\obj\Debug\netcoreapp3.1\Routine.genruntimeconfig.cache
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\wang-pc\Documents\C#\RESTful API\WebApi\Routine\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

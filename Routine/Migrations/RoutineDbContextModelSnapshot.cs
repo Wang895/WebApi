@@ -94,6 +94,48 @@ namespace Routine.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("47008320-99f6-4064-87d9-1e0316c4c181"),
+                            CompanyId = new Guid("2f9e2e78-96b1-4203-b4e9-87764f8ee601"),
+                            DateOfBirth = new DateTime(1994, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmployeeNo = "1",
+                            FirstName = "光",
+                            Gender = 1,
+                            LastName = "李"
+                        },
+                        new
+                        {
+                            Id = new Guid("1c18c214-d921-4edf-8629-c5046eb4e67d"),
+                            CompanyId = new Guid("2f9e2e78-96b1-4203-b4e9-87764f8ee601"),
+                            DateOfBirth = new DateTime(1987, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmployeeNo = "2",
+                            FirstName = "三",
+                            Gender = 1,
+                            LastName = "张"
+                        },
+                        new
+                        {
+                            Id = new Guid("5896c321-b223-4509-bdd0-291199260cf1"),
+                            CompanyId = new Guid("5067c167-122d-464c-ac95-40322fae31d2"),
+                            DateOfBirth = new DateTime(1990, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmployeeNo = "3",
+                            FirstName = "四",
+                            Gender = 2,
+                            LastName = "李"
+                        },
+                        new
+                        {
+                            Id = new Guid("2149a84e-2cbe-428c-98e6-6856f15f1515"),
+                            CompanyId = new Guid("5067c167-122d-464c-ac95-40322fae31d2"),
+                            DateOfBirth = new DateTime(1990, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmployeeNo = "4",
+                            FirstName = "六",
+                            Gender = 2,
+                            LastName = "赵"
+                        });
                 });
 
             modelBuilder.Entity("Routine.Entity.Employee", b =>

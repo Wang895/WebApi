@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Routine.Helper;
+using Routine.Models;
 
 namespace Routine.Services
 {
@@ -24,9 +26,12 @@ namespace Routine.Services
                 throw new ArgumentNullException(nameof(company));
             }
             company.Id = Guid.NewGuid();
-            foreach(var employee in company.Employees)
+            if (company.Employees != null)
             {
-                employee.Id = Guid.NewGuid();
+                foreach (var employee in company.Employees)
+                {
+                    employee.Id = Guid.NewGuid();
+                }
             }
             _routineContext.Companies.Add(company);
         }
@@ -37,6 +42,7 @@ namespace Routine.Services
             {
                 throw new ArgumentNullException(nameof(employee));
             }
+            employee.Id = Guid.NewGuid();
             employee.CompanyId = companyId;
             _routineContext.Employees.Add(employee);
         }
@@ -64,13 +70,31 @@ namespace Routine.Services
             _routineContext.Employees.Remove(employee);
         }
 
-        public async Task<IEnumerable<Company>> GetCompanies(IEnumerable<Guid> companyIds)
+        public async Task<IEnumerable<Company>> GetCompaniesAsync(IEnumerable<Guid> companyIds)
         {
             if (companyIds == null)
             {
                 throw new ArgumentNullException(nameof(companyIds));
             }
             return await _routineContext.Companies.Where(x => companyIds.Contains(x.Id)).OrderBy(x => x.Name).ToListAsync();
+        }
+
+        public async Task<PagedList<Company>> GetCompaniesAsync(CompanyDtoParameters parameters)
+        {
+            var QueryExpression = _routineContext.Companies as IQueryable<Company>;
+            if (!string.IsNullOrWhiteSpace((parameters.CompanyName)))
+            {
+                string CompanyName = parameters.CompanyName.Trim();
+                QueryExpression = QueryExpression.Where(x => x.Name.Contains(CompanyName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            {
+                string searchTerm = parameters.SearchTerm.Trim();
+                QueryExpression = QueryExpression.Where(x => x.Name.Contains(searchTerm)
+                                                             || x.Introduction.Contains(searchTerm));
+            }
+            return await PagedList<Company>.CreateAsync(QueryExpression, QueryExpression.Count(), parameters.PageNumber,parameters.PageSize);
         }
 
         public async Task<IEnumerable<Company>> GetCompaniesAsync()
@@ -96,16 +120,36 @@ namespace Routine.Services
             {
                 throw new ArgumentNullException(nameof(employeeId));
             }
-            return await _routineContext.Employees.Where(x => x.Id == companyId && x.CompanyId == companyId).FirstOrDefaultAsync();
+            return await _routineContext.Employees.Where(x => x.Id == employeeId && x.CompanyId == companyId).FirstOrDefaultAsync();
+           
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployeesAsync(Guid companyId)
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync(Guid companyId,String genderDisplay,string q)
         {
             if (companyId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(companyId));
             }
-            return await _routineContext.Employees.Where(x => x.CompanyId == companyId).OrderBy(x=>x.EmployeeNo).ToListAsync();
+            if (string.IsNullOrEmpty(genderDisplay)&&string.IsNullOrEmpty(q))
+            {
+                Console.WriteLine("kong");
+                return await _routineContext.Employees.Where(x => x.CompanyId == companyId).OrderBy(x => x.EmployeeNo).ToListAsync();
+            }
+            var item = _routineContext.Employees.Where(x=>x.CompanyId==companyId) as IQueryable<Employee>;
+            if (!string.IsNullOrEmpty(genderDisplay))
+            {
+                genderDisplay = genderDisplay.Trim();
+                Gender gender = Enum.Parse<Gender>(genderDisplay);
+                item = item.Where(x => x.Gender == gender);
+            }
+            if (!string.IsNullOrEmpty(q))
+            {
+                q = q.Trim();
+                item = item.Where(x => x.FirstName.Contains(q)
+                || x.LastName.Contains(q)
+                || x.EmployeeNo.Contains(q)).OrderBy(x => x.EmployeeNo);
+            }
+            return await item.ToListAsync();
         }
 
         public async Task<bool> SaveAsync()
